@@ -22,6 +22,11 @@ function charsetSelectChange(cbbox) {
     generateTable(null);
 }
 
+function prefixTextChange(itext) {
+    
+    generateTable(null);
+}
+
 function updateAsciiIntersectionVisibility(charsetValue) {
     if ('ascii' == charsetValue) {
         $('#p_ascii_intersection').show();
@@ -437,6 +442,7 @@ function generateTable(highlight) {
     var spacePadding = document.getElementById("spacePadding").checked;
 
     var charset = document.getElementById("charset").value;
+    var prefix = document.getElementById("prefix").value;
 
     var horizontalHeader = document.getElementById("horizontal_header").value;
     var verticalHeader = document.getElementById("vertical_header").value;
@@ -458,7 +464,7 @@ function generateTable(highlight) {
     var data = extractData(spacePadding, horizontalHeader, verticalHeader);
     var widths = getWidths(data, spacePadding);
     var heights = getHeights(data, border, horizontalHeader, spacePadding);
-    var str = "";
+    var str = "" + prefix;
     var i, j, m, offsets;
 
     // top
@@ -473,6 +479,7 @@ function generateTable(highlight) {
         }
 
         for (m = 0; m < heights[i]; m++) {
+            str += prefix
             str += openHighlighted(highlight, 'verticalLeft');
             str += line[charset][border.verticalLeft].vertical;
             str += closeHighlighted(highlight, 'verticalLeft');
