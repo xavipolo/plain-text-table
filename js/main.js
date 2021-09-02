@@ -507,7 +507,7 @@ function generateTable(highlight) {
             str += openHighlighted(highlight, 'verticalRight');
             str += line[charset][border.verticalRight].vertical;
             str += closeHighlighted(highlight, 'verticalRight');
-            str += '\n';
+            str += suffix + '\n';
         }
 
         
