@@ -4,6 +4,7 @@ Interactively create and edit tables and export them to plain text.
 
 ## Use the tool online
 
+My version: https://xavipolo.github.io/plain-text-table/
 Please visit : http://plaintexttools.github.io/plain-text-table
 
 ## Features
