@@ -506,13 +506,13 @@ function generateTable(highlight) {
         
         //str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
         gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
-        str += (gsl!='')?prefix:'' + gsl;
+        str += ((gsl!='')?prefix:'') + gsl;
         
     }
     if (data.vLen == 0) {
         //str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, data.vLen);
         gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, data.vLen);
-        str += (gsl!='')?prefix:'' + gsl;
+        str += ((gsl!='')?prefix:'') + gsl;
     }
     $('#ptt-wrapper').html(str);
 }
