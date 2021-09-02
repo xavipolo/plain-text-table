@@ -23,9 +23,12 @@ function charsetSelectChange(cbbox) {
 }
 
 function prefixTextChange(itext) {
-    
     generateTable(null);
 }
+function suffixTextChange(itext) {
+    generateTable(null);
+}
+
 
 function updateAsciiIntersectionVisibility(charsetValue) {
     if ('ascii' == charsetValue) {
@@ -442,7 +445,9 @@ function generateTable(highlight) {
     var spacePadding = document.getElementById("spacePadding").checked;
 
     var charset = document.getElementById("charset").value;
+    
     var prefix = document.getElementById("prefix").value;
+    var suffix = document.getElementById("suffix").value;
 
     var horizontalHeader = document.getElementById("horizontal_header").value;
     var verticalHeader = document.getElementById("vertical_header").value;
@@ -468,10 +473,12 @@ function generateTable(highlight) {
     var i, j, m, offsets;
 
     // top
-    str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, -1);
+    str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, prefix, suffix, -1);
+    /*
     if (str != '') {
         str = prefix + str;
-    }
+    }*/
+    
     // rows
     for (i = 0; i < data.vLen; i++) {
         offsets = [];
@@ -505,14 +512,18 @@ function generateTable(highlight) {
 
         
         //str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
-        gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
-        str += ((gsl!='')?prefix:'') + gsl;
+        str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, prefix, suffix, i);
+        
+        //gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, prefix, suffix, i);
+        //str += ((gsl!='')?prefix:'') + gsl;
         
     }
     if (data.vLen == 0) {
         //str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, data.vLen);
-        gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, data.vLen);
-        str += ((gsl!='')?prefix:'') + gsl;
+        str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, prefix, suffix, data.vLen );
+        
+        //gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, prefix, suffix, data.vLen );
+        //str += ((gsl!='')?prefix:'') + gsl;
     }
     $('#ptt-wrapper').html(str);
 }
@@ -857,7 +868,7 @@ function findNotFittingMergedCellWithHeights(data, border, horizontalHeader, mer
     };
 }
 
-function generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i) {
+function generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, prefix, suffix, i ) {
     var j, k, horizontalBorderKey, generateBorder, item, offset;
     var str = '';
 
@@ -907,7 +918,7 @@ function generateSeparationLine(data, widths, heights, highlight, unicode, line,
         str += generateIntersection(data, charset, border, highlight, horizontalHeader, verticalHeader, unicode, line, i, widths.length);
     }
     str += closeHighlighted(highlight, horizontalBorderKey);
-    str += '\n';
+    str = prefix + str + suffix + '\n';
     return str;
 }
 
