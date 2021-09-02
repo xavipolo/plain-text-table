@@ -502,6 +502,7 @@ function generateTable(highlight) {
             str += '\n';
         }
 
+        str += prefix
         str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
     }
     if (data.vLen == 0) {
