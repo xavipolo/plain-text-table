@@ -464,13 +464,14 @@ function generateTable(highlight) {
     var data = extractData(spacePadding, horizontalHeader, verticalHeader);
     var widths = getWidths(data, spacePadding);
     var heights = getHeights(data, border, horizontalHeader, spacePadding);
-    var str = "" + prefix;
+    var str = "";
     var i, j, m, offsets;
 
     // top
     str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, -1);
-
-
+    if (str != '') {
+        str = prefix + str;
+    }
     // rows
     for (i = 0; i < data.vLen; i++) {
         offsets = [];
@@ -502,8 +503,11 @@ function generateTable(highlight) {
             str += '\n';
         }
 
-        str += prefix
-        str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
+        
+        //str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
+        gsl = generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, i);
+        str += (gls!='')?prefix:'' + gls;
+        
     }
     if (data.vLen == 0) {
         str += generateSeparationLine(data, widths, heights, highlight, unicode, line, charset, horizontalHeader, verticalHeader, border, data.vLen);
