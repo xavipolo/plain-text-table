@@ -83,6 +83,9 @@
                   <option value="unicode" selected="selected">Unicode</option>
                 </select></p>
                 <hr/>
+                <p>Prefix characters: <text id="prefix" name="prefix" onchange="prefixTextChange(this);">
+                </p>
+                <hr/>
                 <p>Horizontal Header: <select id="horizontal_header" name="horizontalHeader" onchange="horizontalHeaderSelectChange(this);">
                   <option value="none">None</option>
                   <option value="first_line" selected="selected">First line</option>
@@ -201,7 +204,7 @@
         <script src="js/main.js"></script>
 
         <!-- [TODO] Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
+        <!--script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -209,6 +212,6 @@
 
           ga('create', 'UA-47274059-1', 'lorefnon.me');
           ga('send', 'pageview');
-        </script>
+        </script-->
     </body>
 </html>
